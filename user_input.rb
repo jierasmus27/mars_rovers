@@ -11,8 +11,10 @@ class UserInput
     max_location = ''
     rover_data = []
 
+    puts instruction_message
+
     loop do
-      max_location = gather_input('Top right location (format x, y) ')
+      max_location = gather_input('Top right location (format x y) ')
 
       break if valid_max_location(max_location)
     end
@@ -29,7 +31,7 @@ class UserInput
       break if rover_location == 'stop'
 
       loop do
-        rover_instructions = gather_input('rover instructions (options: L, R, M, for example LRMRMM) ')
+        rover_instructions = gather_input('Rover instructions (options: L, R, M, for example LRMRMM) ')
 
         break if valid_rover_instructions(rover_instructions) || rover_instructions == 'stop'
       end
@@ -47,17 +49,21 @@ class UserInput
 
   private
 
+  def self.instruction_message
+    'Please enter the mission details. Enter "stop" to start the mission'
+  end
+
   def self.gather_input(message)
     print message
     gets.chomp
   end
 
   def self.valid_max_location(max_location)
-    max_location.match(/^[1-8]+ [1-8]+$/)
+    max_location.match(/^[0-9]+ [0-9]+$/)
   end
 
   def self.valid_rover_location(rover_location)
-    rover_location.match(/^[1-8]+ [1-8]+ (N|E|S|W)$/)
+    rover_location.match(/^[0-9]+ [0-9]+ (N|E|S|W)$/)
   end
 
   def self.valid_rover_instructions(rover_instructions)
