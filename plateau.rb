@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "byebug"
-
 class Plateau
   attr_reader :grid
 
