@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
 class Mission
-  attr_accessor :rovers, :instructions, :plateau
+  attr_accessor :rovers, :instructions, :plateau, :errors
 
   def initialize(rovers:, instructions:, plateau:)
     @rovers = rovers
     @instructions = instructions
     @plateau = plateau
+    @errors = []
   end
 
   def start
     instructions.each.with_index do |instruction_set, index|
       execute_orders(rovers[index], instruction_set)
+    rescue StandardError => e
+      @errors << "Rover #{index} stopped: #{e.message}"
     end
   end
 
@@ -22,7 +25,5 @@ class Mission
       plateau.move(rover, rover.next_location) if instruction == 'M'
       rover.perform(instruction)
     end
-  rescue StandardError => e
-    "A rover operation halted: #{e.message}"
   end
 end

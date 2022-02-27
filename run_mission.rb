@@ -18,7 +18,7 @@ class RunMission
     )
     mission.start
 
-    MissionReport.new(mission).print
+    MissionReport.new(mission).print_report
   rescue StandardError => e
     puts "The mission failed: #{e.message}"
   end
