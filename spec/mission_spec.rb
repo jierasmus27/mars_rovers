@@ -73,7 +73,7 @@ describe Mission do
         ]
       end
 
-      it 'moves the first rover reaches the edge' do
+      it 'moves the first rover which reaches the edge' do
         expect(rovers[0].location.to_a).to eq [1, 900]
         expect(rovers[0].direction.to_s).to eq 'N'
       end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Mission
-  attr_accessor :rovers, :instructions, :plateau, :errors
+  attr_reader :rovers, :instructions, :plateau, :errors
 
   def initialize(rovers:, instructions:, plateau:)
     @rovers = rovers

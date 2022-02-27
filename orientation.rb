@@ -3,7 +3,7 @@
 class Orientation
   DIRECTIONS = %w(N W S E).freeze
 
-  attr_accessor :direction
+  attr_reader :direction
 
   def initialize(direction)
     @direction = direction
@@ -14,7 +14,7 @@ class Orientation
   end
 
   def to_s
-    direction.to_s
+    direction
   end
 
   private
