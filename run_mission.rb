@@ -5,22 +5,22 @@ require_relative 'mission_plan'
 require_relative 'mission_report'
 require_relative 'user_input'
 
-require "byebug"
-
 class RunMission
   def self.start
-    input = UserInput.gather_plans
+    mission_plans = UserInput.gather_plans
 
-    params = MissionPlan.new(input).setup
+    mission_setup = MissionPlan.new(mission_plans).setup
 
     mission = Mission.new(
-      rovers: params[:rovers],
-      plateau: params[:plateau],
-      instructions: params[:instructions]
+      rovers: mission_setup[:rovers],
+      plateau: mission_setup[:plateau],
+      instructions: mission_setup[:instructions]
     )
     mission.start
 
     MissionReport.new(mission).print
+  rescue StandardError => e
+    puts "The mission failed: #{e.message}"
   end
 end
 
