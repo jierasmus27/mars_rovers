@@ -22,7 +22,7 @@ Simply clone the repository with the following command:
 git clone git@github.com:jierasmus27/mars_rovers.git
 ```
 
-You can run the application which takes in the coordinates and rover instructions on the command line as per:
+You can run the application on the command line in the `mars_rovers` folder as per:
 
 ```
 ruby run_mission.rb
@@ -67,7 +67,7 @@ Lastly it will also display a grid of the plateau, with the rover's final orient
 
 ## To run test cases
 
-Rspec was used to test the various application components. To verify there, please install rspec into the folder:
+Rspec was used to test the various application components. To run the tests, please install rspec into the `mars_rovers` folder:
 
 ```
 gem install rspec
