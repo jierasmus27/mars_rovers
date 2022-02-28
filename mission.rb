@@ -14,7 +14,7 @@ class Mission
     instructions.each.with_index do |instruction_set, index|
       execute_orders(rovers[index], instruction_set)
     rescue StandardError => e
-      @errors << "Rover #{index} stopped: #{e.message}"
+      @errors << "Rover #{index + 1} stopped: #{e.message}"
     end
   end
 

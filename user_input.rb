@@ -17,6 +17,8 @@ class UserInput
       max_location = gather_input('Top right location (format x y) ')
 
       break if valid_max_location(max_location)
+
+      puts 'Invalid format, required format (x y)'
     end
 
     loop do
@@ -25,18 +27,22 @@ class UserInput
       loop do
         rover_location = gather_input('Rover location (format: x y direction, for example 1 2 N) ')
 
-        break if valid_rover_location(rover_location) || rover_location == 'stop'
+        break if valid_rover_location(rover_location) || rover_location == start_text
+
+        puts 'Invalid format, required format (x y direction)'
       end
 
-      break if rover_location == 'stop'
+      break if rover_location == start_text
 
       loop do
         rover_instructions = gather_input('Rover instructions (options: L, R, M, for example LRMRMM) ')
 
-        break if valid_rover_instructions(rover_instructions) || rover_instructions == 'stop'
+        break if valid_rover_instructions(rover_instructions) || rover_instructions == start_text
+
+        puts 'Invalid format, required format (comination of L, R, M)'
       end
 
-      break if rover_instructions == 'stop'
+      break if rover_instructions == start_text
 
       rover_data << {
         location: rover_location,
@@ -49,8 +55,12 @@ class UserInput
 
   private
 
+  def self.start_text
+    'start'
+  end
+
   def self.instruction_message
-    'Please enter the mission details. Enter "stop" to start the mission'
+    "Please enter the mission details. Enter '#{start_text}' to kick off the mission"
   end
 
   def self.gather_input(message)
